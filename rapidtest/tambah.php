@@ -4,6 +4,8 @@ require_once 'model/Peserta.php';
 if(adaPermintaanProsesTambah()){
     $peserta = new Peserta($_POST['email'],$_POST['nama']);
     $peserta->add();
+    $pesan="Peserta Berhasil Ditambah";
+    kirimKeHalamanUtama($pesan);
 } else {
     tampilkanFormulirTambahPeserta();
 }
@@ -16,4 +18,8 @@ function adaPermintaanProsesTambah(){
 
 function tampilkanFormulirTambahPeserta(){
     require_once 'view/view-tambah-peserta.php';
+}
+
+function kirimKeHalamanUtama($pesan){
+    header("Location: index.php?pesan=$pesan");
 }
